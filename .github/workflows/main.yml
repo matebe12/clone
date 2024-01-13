@@ -27,7 +27,7 @@ jobs:
         WINDOWS_PC_IP: ${{ secrets.REMOTE_HOST }}       
         WINDOWS_PC_USERNAME: ${{ secrets.REMOTE_USER }}                
         WINDOWS_PC_PASSWORD: ${{ secrets.REMOTE_PASSWORD }}
-      run: scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -P 22 -i $HOME/.ssh/id_rsa -v ./dist $WINDOWS_PC_USERNAME@$WINDOWS_PC_IP:"C:\Users\$WINDOWS_PC_USERNAME\Desktop"
+      run: scp -i $HOME/.ssh/id_rsa -r ./dist $WINDOWS_PC_USERNAME@$WINDOWS_PC_IP:"C:\Users\$WINDOWS_PC_USERNAME\Desktop"
 
               
           
