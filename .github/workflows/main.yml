@@ -18,7 +18,7 @@ jobs:
     - name: clean
       run: npm cache clean --force
     - name: Get ssh
-      run: ls -l /home/runner/work/clone/.ssh/id_rsa
+      run: ls -l /home/runner/work/clone
       
 
     - name: Install dependencies
