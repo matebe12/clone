@@ -17,10 +17,6 @@ jobs:
         node-version: '16'
     - name: clean
       run: npm cache clean --force
-    - name: Set ssh
-      run: ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-    - name: Get ssh
-      run: ls -l /home/runner/work/clone
       
 
     - name: Install dependencies
