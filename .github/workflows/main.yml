@@ -21,7 +21,7 @@ jobs:
 
     - name: Build
       run: npm run build
-
+      
     - name: Copy files to Windows PC
       env:
         WINDOWS_PC_IP: ${{ secrets.REMOTE_HOST }}       
