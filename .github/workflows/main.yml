@@ -40,6 +40,6 @@ jobs:
           #source: "."
           username: ${{ secrets.REMOTE_USER }}
           #target: "C:\\Users\\$WINDOWS_PC_USERNAME\\Desktop"
-          password: ${{ secrets.PASSWORD }}
+          password: 156756
           script: whoami
        
