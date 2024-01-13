@@ -33,8 +33,6 @@ jobs:
         WINDOWS_PC_PASSWORD: ${{ secrets.REMOTE_PASSWORD }}
               
           
-        run: |
-          # 원격 Windows PC로 파일 복사
-          scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -P 22 -i $HOME/.ssh/id_rsa -v ./dist $WINDOWS_PC_USERNAME@$WINDOWS_PC_IP:"C:\Users\$WINDOWS_PC_USERNAME\Desktop"
+        run: scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -P 22 -i $HOME/.ssh/id_rsa -v ./dist $WINDOWS_PC_USERNAME@$WINDOWS_PC_IP:"C:\Users\$WINDOWS_PC_USERNAME\Desktop"
 
        
