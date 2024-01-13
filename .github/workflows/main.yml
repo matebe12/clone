@@ -25,27 +25,22 @@ jobs:
     - name: Build
       run: npm run build
 
-    - name: scp action
-      # You may pin to the exact commit or the version.
-      # uses: c0c1/scp-action@7c13f74869e81c70a71b04ab0a7087dbdee76ab4
-      uses: c0c1/scp-action@v1.0
+    ## 서버에 아티팩트 전송
+    - name: Transfer artifact
+      uses: appleboy/scp-action@master
       env:
         WINDOWS_PC_IP: ${{ secrets.REMOTE_HOST }}       
-        WINDOWS_PC_USERNAME: ${{ secrets.REMOTE_USER }}       
+        WINDOWS_PC_USERNAME: ${{ secrets.REMOTE_USER }}    
       with:
-        # Sorce dir to deploy
-        src: ./dist
-        # SSH address
+        username: ${{ secrets.REMOTE_USER }}
         host: ${{ secrets.REMOTE_HOST }}
-        # Remote dir path
-        remote: C:\Users\$WINDOWS_PC_USERNAME\Desktop
-        # SSH Port
-        #port: # optional, default is 22
-        # SSH User name
-        user: ${{ secrets.REMOTE_USER }}
-        # Private key
+        port: 22
         key: ${{ secrets.SSH_KEY }}
-          
+        rm: true
+        source: "./dist"
+        target: C:\Users\$WINDOWS_PC_USERNAME\Desktop
+        ## 작업에 사용했던 dist 디렉토리를 경로상에서 제거
+        strip_components: 1
               
           
       
