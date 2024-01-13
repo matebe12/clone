@@ -25,16 +25,16 @@ jobs:
     - name: Copy files to Windows PC
       env:
         WINDOWS_PC_IP: ${{ secrets.REMOTE_HOST }}
+        
+        
         WINDOWS_PC_USERNAME: ${{ secrets.REMOTE_USER }}
+                
+                
         WINDOWS_PC_PASSWORD: ${{ secrets.REMOTE_PASSWORD }}
-      
-      
-      run: |
-        # Windows PC로 파일 복사
-        $securePassword = ConvertTo-SecureString $env:WINDOWS_PC_PASSWORD -AsPlainText -Force
-        $credential = New-Object System.Management.Automation.PSCredential ($env:WINDOWS_PC_USERNAME, $securePassword)
-        $sourcePath = "dist" # 빌드된 파일의 경로를 수정해야 합니다.
-        $destinationPath = "\\$env:WINDOWS_PC_IP\c$\Users\$env:WINDOWS_PC_USERNAME\Desktop\"
-        Copy-Item -Path $sourcePath -Destination $destinationPath -Recurse -Force -Credential $credential
+              
+          
+        run: |
+          # 원격 Windows PC로 파일 복사
+          scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -P 22 -i $HOME/.ssh/id_rsa -v ./dist $WINDOWS_PC_USERNAME@$WINDOWS_PC_IP:"C:\Users\$WINDOWS_PC_USERNAME\Desktop"
 
-   
+       
