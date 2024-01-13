@@ -17,6 +17,8 @@ jobs:
         node-version: '16'
     - name: clean
       run: npm cache clean --force
+    - name: Set ssh
+      run: ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
     - name: Get ssh
       run: ls -l /home/runner/work/clone
       
@@ -26,14 +28,28 @@ jobs:
 
     - name: Build
       run: npm run build
-      
-    - name: Copy files to Windows PC
+
+    - name: scp action
+      # You may pin to the exact commit or the version.
+      # uses: c0c1/scp-action@7c13f74869e81c70a71b04ab0a7087dbdee76ab4
+      uses: c0c1/scp-action@v1.0
       env:
         WINDOWS_PC_IP: ${{ secrets.REMOTE_HOST }}       
-        WINDOWS_PC_USERNAME: ${{ secrets.REMOTE_USER }}                
-        WINDOWS_PC_PASSWORD: ${{ secrets.REMOTE_PASSWORD }}
-      run: scp -i $RUNNER_WORKSPACE/.ssh/id_rsa -r ./dist $WINDOWS_PC_USERNAME@$WINDOWS_PC_IP:"C:\Users\$WINDOWS_PC_USERNAME\Desktop"
-
+        WINDOWS_PC_USERNAME: ${{ secrets.REMOTE_USER }}       
+      with:
+        # Sorce dir to deploy
+        src: ./dist
+        # SSH address
+        host: ${{ secrets.REMOTE_HOST }}
+        # Remote dir path
+        remote: C:\Users\$WINDOWS_PC_USERNAME\Desktop
+        # SSH Port
+        #port: # optional, default is 22
+        # SSH User name
+        user: ${{ secrets.REMOTE_USER }}
+        # Private key
+        key: ${{ secrets.SSH_KEY }}
+          
               
           
       
