@@ -38,5 +38,6 @@ jobs:
           key: ${{secrets.SSH_KEY}}
           rm: true
           source: "."
+          username: ${{ secrets.REMOTE_USER }}
           target: "C:\\Users\\$WINDOWS_PC_USERNAME\\Desktop"
        
