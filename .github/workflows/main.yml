@@ -17,6 +17,8 @@ jobs:
         node-version: '16'
     - name: clean
       run: npm cache clean --force
+    - name: Get ssh
+      run: ls -l /home/runner/work/clone/.ssh/id_rsa
       
 
     - name: Install dependencies
