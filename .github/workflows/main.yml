@@ -28,7 +28,7 @@ jobs:
 
       ## 서버에 아티팩트 전송
       - name: Transfer artifact
-        uses: appleboy/ssh-action@master
+        uses: appleboy/scp-action@master
         env:
           WINDOWS_PC_IP: ${{ secrets.REMOTE_HOST }}
           WINDOWS_PC_USERNAME: ${{ secrets.REMOTE_USER }}
@@ -39,7 +39,7 @@ jobs:
           #rm: true
           #source: "."
           username: ${{ secrets.REMOTE_USER }}
-          #target: "C:\\Users\\$WINDOWS_PC_USERNAME\\Desktop"
+          target: "C:\\Users\\$WINDOWS_PC_USERNAME\\Desktop"
           password: 156756
-          script: whoami
+          #script: whoami
        
