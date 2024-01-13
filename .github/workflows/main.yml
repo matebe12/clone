@@ -25,6 +25,8 @@ jobs:
         run: npm run build
       - name: confirm directory
         run: ls
+      - name: Confirm directory
+        run: dir
 
       ## 서버에 아티팩트 전송
       - name: Transfer artifact
