@@ -35,7 +35,7 @@ jobs:
         with:
           host: ${{ secrets.REMOTE_HOST }}
           port: 22
-          key: ${{secrets.SSH_KEY}}
+         # key: ${{secrets.SSH_KEY}}
           #rm: true
           #source: "."
           username: ${{ secrets.REMOTE_USER }}
